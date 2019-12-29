@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Flexy Card</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref=""></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form [formGroup]="addCardForm" (submit)="createCard()">
+
+        <ion-item>
+            <ion-input formControlName="name" type="text" placeholder="Enter full name">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="age" type="number" placeholder="Enter your age">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="phone" type="text" placeholder="Enter phone no.">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-textarea formControlName="address" type="text" placeholder="Enter your address">
+            </ion-textarea>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>
+                Employment Status:
+            </ion-label>
+            <ion-select formControlName="employmentStatus">
+
+                <ion-select-option value="employed">Employed</ion-select-option>
+                <ion-select-option value="self-employed">Self Employed</ion-select-option>
+                <ion-select-option value="unemployed">Just Seated</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>
+                Monthly Fuel Quantities:
+            </ion-label>
+            <ion-select formControlName="fuelQuantities">
+
+                <ion-select-option value="500-1000">500 - 1000 l</ion-select-option>
+                <ion-select-option value="1000-2000">1000 - 2000 l</ion-select-option>
+                <ion-select-option value="2000+">More than 2000 l</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" [disabled]="checkValid()">
+            Submit
+        </ion-button>
+    </form>
+
+</ion-content>

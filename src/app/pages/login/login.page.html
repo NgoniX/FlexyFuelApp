@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Login</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form (ngSubmit)="login(loginForm)" #loginForm="ngForm" novalidate>
+        <ion-list inset>
+
+            <ion-item>
+                <ion-label>
+                    <ion-icon class="icon-input" name="mail"></ion-icon>
+                </ion-label>
+                <ion-input type="email" #email="ngModel" placeholder="Email" [(ngModel)]="credential.email" name="email" required></ion-input>
+            </ion-item>
+
+            <ion-text color="danger">
+                <p [hidden]="email.valid || submitted == false" padding-left>
+                    Email is required
+                </p>
+            </ion-text>
+
+            <ion-item>
+                <ion-label>
+                    <ion-icon class="icon-input" name="lock"></ion-icon>
+                </ion-label>
+                <ion-input type="password" #password="ngModel" placeholder="Password" [(ngModel)]="credential.password" name="password" required></ion-input>
+            </ion-item>
+
+            <ion-text color="danger">
+                <p [hidden]="password.valid || submitted == false" padding-left>
+                    Password is required
+                </p>
+            </ion-text>
+
+        </ion-list>
+
+        <div class="ion-padding-horizontal">
+            <ion-button color="primary" expand="block" type="submit">Login</ion-button>
+            <p class="format-text">-- OR --</p>
+            <p align="center"><a class="link-format" [routerLink]="'/register'" routerDirection="forward">Don't Have Account?
+          Register</a></p>
+            <p align="center">
+                <a class="link-back" [routerLink]="'/'" routerDirection="forward">
+                    <ion-icon name="home"></ion-icon> Go Back
+                </a>
+            </p>
+        </div>
+    </form>
+
+</ion-content>

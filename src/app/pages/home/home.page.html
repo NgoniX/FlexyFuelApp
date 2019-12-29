@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Flexy Fuel
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <h3>We Bring Fuel To You</h3>
+
+    <img src="assets/imgs/gas-man.png" alt="">
+
+    <div class="center-v">
+        <p>
+            <ion-button [routerLink]="'/order-fuel'" routerDirection="forward" expand="full" fill="solid">
+                <ion-icon slot="start" name="wallet"></ion-icon>
+                Order Fuel
+            </ion-button>
+        </p>
+
+        <p>
+            <ion-button [routerLink]="'/flexy-card'" routerDirection="forward" expand="full" fill="solid">
+                <ion-icon slot="start" name="card"></ion-icon>
+                Get Flexy Card
+            </ion-button>
+        </p>
+
+        <p *ngIf="!auth.authenticated">
+            <ion-button [routerLink]="'/login'" routerDirection="forward" expand="full" fill="solid">
+                <ion-icon slot="start" name="person-add"></ion-icon>
+                Login / Sign Up
+            </ion-button>
+        </p>
+
+        <p *ngIf="userLevel === 'admin'">
+            <ion-button [routerLink]="'/sales'" routerDirection="forward" expand="full" fill="solid">
+                <ion-icon slot="start" name="cash"></ion-icon>
+                Sales
+            </ion-button>
+        </p>
+
+    </div>
+
+</ion-content>

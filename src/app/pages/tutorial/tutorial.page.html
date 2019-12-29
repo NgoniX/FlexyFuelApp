@@ -1,0 +1,42 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button color='primary' (click)="finish()" [hidden]="!showSkip">Skip</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="false">
+        <ion-slide>
+            <img src="assets/imgs/img1.png" class="slide-image" />
+            <h2 class="slide-title">
+                Welcome to
+                <b>Flexy Fuel</b>
+            </h2>
+            <p>
+                <b class="sub-text">We are part of the Applegate Group:</b> <br>
+                <i>Logistics, Real Estate, Crowdfunding, Forex Trading, Digital Marketing,
+          Car Batteries, Solar Energy
+        </i>
+            </p>
+        </ion-slide>
+
+        <ion-slide>
+            <img src="assets/imgs/img2.png" class="slide-image" />
+            <h2 class="slide-title">Hassle Free</h2>
+            <p>
+                We bring fuel to you. Flexibility is our strength
+            </p>
+        </ion-slide>
+
+        <ion-slide>
+            <img src="assets/imgs/img3.png" class="slide-image" />
+            <h2 class="slide-title">Ready to Fuel Up?</h2>
+            <ion-button fill="clear" (click)="finish()">
+                Continue
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
