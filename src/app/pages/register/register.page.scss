@@ -7,6 +7,26 @@ ion-select.access-level {
     -webkit-border-radius: 50px;
 }
 
+ion-avatar {
+    width: 120px;
+    height: 120px;
+    -ms-transform: translate(15%, 0%);
+    transform: translate(15%, 0%);
+}
+
+ion-list {
+    margin-top: -40px !important;
+}
+
+#button-div {
+    margin-top: -20px;
+}
+
+.center-div {
+    -ms-transform: translate(20%, 0%);
+    transform: translate(20%, 0%);
+}
+
 ion-input {
     background-color: #eee;
     border-radius: 10px;

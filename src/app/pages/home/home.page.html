@@ -13,13 +13,45 @@
 
     <h3>We Bring Fuel To You</h3>
 
-    <img src="assets/imgs/gas-man.png" alt="">
+    <div>
+
+        <div class="place-left">
+            <span class="price-text">Petrol</span> <br>
+            <div *ngFor="let price of prices">
+                <span class="price-text">{{ price.P_ZWL }} ZWL</span> <br>
+                <span class="price-text">{{ price.P_USD }} USD</span>
+            </div>
+        </div>
+
+
+    <img src="assets/imgs/gas-man.png" class="main-img">
+
+    <!-- price-text class and digital-7.ttf in global.scss -->
+
+        <div class="place-right">
+            <span class="price-text">Diesel</span> <br>
+            <div *ngFor="let price of prices">
+                <span class="price-text">{{ price.D_ZWL }} ZWL</span> <br>
+                <span class="price-text">{{ price.D_USD }} USD</span>
+            </div>
+        </div>
+
+    </div>
+
+
 
     <div class="center-v">
         <p>
             <ion-button [routerLink]="'/order-fuel'" routerDirection="forward" expand="full" fill="solid">
                 <ion-icon slot="start" name="wallet"></ion-icon>
                 Order Fuel
+            </ion-button>
+        </p>
+
+        <p>
+            <ion-button [routerLink]="'/order-gas'" routerDirection="forward" expand="full" fill="solid">
+                <ion-icon slot="start" name="bonfire"></ion-icon>
+                Order LP Gas
             </ion-button>
         </p>
 
@@ -37,7 +69,7 @@
             </ion-button>
         </p>
 
-        <p *ngIf="userLevel === 'admin'">
+        <p *ngIf="userLevel === 'admin' && auth.authenticated">
             <ion-button [routerLink]="'/sales'" routerDirection="forward" expand="full" fill="solid">
                 <ion-icon slot="start" name="cash"></ion-icon>
                 Sales

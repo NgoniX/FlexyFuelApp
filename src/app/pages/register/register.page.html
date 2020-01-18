@@ -8,6 +8,22 @@
 </ion-header>
 
 <ion-content>
+    <div class="center-div">
+        <ion-row class="ion-padding">
+            <ion-col size="6">
+                <ion-avatar>
+                    <img [src]="image" alt="this is the image" />
+                </ion-avatar>
+            </ion-col>
+        </ion-row>
+        <ion-row id="button-div" class="ion-padding">
+            <ion-col size="6">
+                <ion-button fill="outline" expand="block" size="small" (click)="openImagePicker()">
+                    <ion-icon slot="start" name="camera"></ion-icon> Upload Photo
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </div>
 
     <form [formGroup]="validations_form" (ngSubmit)="register(registerForm)" #registerForm="ngForm" novalidate>
         <ion-list inset>
@@ -52,7 +68,8 @@
                 <ion-label>
                     <ion-icon class="icon-input" name="mail"></ion-icon>
                 </ion-label>
-                <ion-input type="email" placeholder="Email" [(ngModel)]="credential.email" formControlName="email"></ion-input>
+                <ion-input type="email" placeholder="Email" [(ngModel)]="credential.email" formControlName="email">
+                </ion-input>
             </ion-item>
 
             <div class="validation-errors">
@@ -84,7 +101,8 @@
                     <ion-label>
                         <ion-icon class="icon-input" name="lock"></ion-icon>
                     </ion-label>
-                    <ion-input type="password" placeholder="Confirm Password" formControlName="confirm_password"></ion-input>
+                    <ion-input type="password" placeholder="Confirm Password" formControlName="confirm_password">
+                    </ion-input>
                 </ion-item>
 
                 <div class="validation-errors">

@@ -19,18 +19,13 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Account',
-      url: '/account',
-      icon: 'person'
-    },
-    {
       title: 'About Us',
       url: '/about',
       icon: 'information-circle'
     },
     {
-      title: 'Contact Us',
-      url: '/about',
+      title: 'Support',
+      url: '/contact',
       icon: 'contact'
     },
   ];

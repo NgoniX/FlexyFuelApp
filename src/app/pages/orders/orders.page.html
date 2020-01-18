@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Order</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref=""></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ngx-datatable [rows]="orders" [sortType]="'multi'" [ngClass]="tableStyle" [rowHeight]="'auto'" [headerHeight]="50" [columnMode]="'force'">
+
+        <ngx-datatable-column name="fuelType"></ngx-datatable-column>
+        <ngx-datatable-column name="litres"></ngx-datatable-column>
+        <ngx-datatable-column name="location"></ngx-datatable-column>
+        <ngx-datatable-column name="deliveryTime"></ngx-datatable-column>
+        <ngx-datatable-column name="paymentMethod"></ngx-datatable-column>
+        <ngx-datatable-column name="phone"></ngx-datatable-column>
+
+    </ngx-datatable>
+
+
+</ion-content>

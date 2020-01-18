@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Order Gas</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref=""></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form [formGroup]="addGasForm" (submit)="createOrder()">
+
+        <ion-item>
+            <ion-input formControlName="phone" type="text" placeholder="Enter phone no.">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="kgs" type="number" placeholder="No. of Kgs">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="location" type="text" placeholder="Enter location">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="deliveryTime" type="text" placeholder="Time of delivery e.g 4 pm or 16:00">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>
+                Payment Method:
+            </ion-label>
+            <ion-select formControlName="paymentMethod">
+
+                <ion-select-option value="cash USD">Cash (USD)</ion-select-option>
+                <ion-select-option value="cash ZWL">Cash (ZWL)</ion-select-option>
+                <ion-select-option value="swipe">Swipe</ion-select-option>
+                <ion-select-option value="ecocash">Ecocash</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" [disabled]="checkValid()">
+            Submit
+        </ion-button>
+    </form>
+
+</ion-content>

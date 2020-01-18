@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Account</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref=""></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div align="center">
+        <img src="./assets/imgs/user-icon.png">
+    </div>
+
+    <h4 align="center">{{ auth.getUserName() }}</h4>
+
+    <p align="center"><b>Name</b>: {{ displayName }}</p>
+    <p align="center"><b>Total Amount in USD</b>: {{ amountUSD }}</p>
+    <p align="center"><b>Total Amount in ZWL</b>: {{ amountZWL }}</p>
+
+</ion-content>

@@ -8,11 +8,14 @@ import { SalesPageRoutingModule } from './sales-routing.module';
 
 import { SalesPage } from './sales.page';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxDatatableModule,
     SalesPageRoutingModule
   ],
   declarations: [SalesPage]

@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Add Sale</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref=""></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form [formGroup]="addSaleForm" (submit)="createSale()">
+
+        <ion-item>
+            <ion-input formControlName="diesel" type="text" placeholder="Enter diesel amount in litres">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="petrol" type="text" placeholder="Enter petrol amount in litres">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="amount" type="text" placeholder="Enter amount">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="total" type="text" placeholder="Enter total">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="client" type="text" placeholder="Enter client details">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="agent" type="text" placeholder="Enter agent name">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="location" type="text" placeholder="Enter location">
+            </ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" [disabled]="checkValid()">
+            Submit
+        </ion-button>
+    </form>
+
+</ion-content>

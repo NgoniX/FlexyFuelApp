@@ -4,9 +4,27 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref=""></ion-back-button>
         </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="addSale()">
+                <ion-icon slot="end" name="add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <ngx-datatable [rows]="sales" [sortType]="'multi'" [ngClass]="tableStyle" [rowHeight]="'auto'" [headerHeight]="50" [columnMode]="'force'">
+
+        <ngx-datatable-column name="dateTime"></ngx-datatable-column>
+        <ngx-datatable-column name="diesel"></ngx-datatable-column>
+        <ngx-datatable-column name="petrol"></ngx-datatable-column>
+        <ngx-datatable-column name="amount"></ngx-datatable-column>
+        <ngx-datatable-column name="total"></ngx-datatable-column>
+        <ngx-datatable-column name="client"></ngx-datatable-column>
+        <ngx-datatable-column name="agent"></ngx-datatable-column>
+        <ngx-datatable-column name="location"></ngx-datatable-column>
+
+    </ngx-datatable>
 
 </ion-content>

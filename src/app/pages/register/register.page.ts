@@ -1,9 +1,12 @@
+import { FirestoreService } from './../../providers/firestore.service';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Component, OnInit } from '@angular/core';
 import { PasswordValidator } from '../../validators/password.validator';
 import { AuthService } from '../../providers/auth.service';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +14,8 @@ import { LoadingController, AlertController } from '@ionic/angular';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+
+  image: any;
 
   validation_messages = {
 
@@ -51,12 +56,18 @@ export class RegisterPage implements OnInit {
   isLoading = false;
 
   constructor(public auth: AuthService,
-    public formBuilder: FormBuilder,
-    private router: Router,
-    private loading: LoadingController,
-    private alert: AlertController) { }
+              public formBuilder: FormBuilder,
+              private router: Router,
+              private loading: LoadingController,
+              private alert: AlertController,
+              private imagePicker: ImagePicker,
+              private webView: WebView,
+              private toastCtrl: ToastController,
+              private firestoreService: FirestoreService) { }
 
   ngOnInit() {
+
+    this.image = './assets/imgs/user-icon.png';
 
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
@@ -86,6 +97,13 @@ export class RegisterPage implements OnInit {
 
     this.submitted = true;
 
+    let cred = {
+      displayName: this.validations_form.controls['displayName'].value,
+      userLevel: this.validations_form.controls['userLevel'].value,
+      email: this.validations_form.controls['email'].value,
+      image: this.image
+    }
+
     if (form.valid) {
 
       this.present();
@@ -94,7 +112,7 @@ export class RegisterPage implements OnInit {
         .then(res => {
           console.log(res);
 
-          this.auth.updateUserData(this.credential);
+          this.auth.updateUserData(cred);
 
           this.dismiss();
           this.router.navigateByUrl('/');
@@ -120,6 +138,55 @@ export class RegisterPage implements OnInit {
 
   }
 
+  openImagePicker(){
+    this.imagePicker.hasReadPermission()
+    .then((result) => {
+      if(result === false){
+        // no callbacks required as this opens a popup which returns async
+        this.imagePicker.requestReadPermission();
+      } else if (result === true){
+        this.imagePicker.getPictures({
+          maximumImagesCount: 1
+        }).then(
+          (results) => {
+            for (let i = 0; i < results.length; i++) {
+              this.uploadImageToFirebase(results[i]);
+            }
+          }, (err) => console.log(err)
+        );
+      }
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  async uploadImageToFirebase(image){
+    const loading = await this.loading.create({
+      message: 'Please wait...'
+    });
+    const toast = await this.toastCtrl.create({
+      message: 'Image was updated successfully',
+      duration: 3000
+    });
+    this.presentLoading(loading);
+    const image_src = this.webView.convertFileSrc(image);
+    const randomId = Math.random().toString(36).substr(2, 5);
+
+    // uploads img to firebase storage
+    this.firestoreService.uploadImage(image_src, randomId)
+    .then(photoURL => {
+      this.image = photoURL;
+      loading.dismiss();
+      toast.present();
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  async presentLoading(loading) {
+    return await loading.present();
+  }
+
   // show loading icon
   async present() {
     this.isLoading = true;
@@ -134,6 +201,7 @@ export class RegisterPage implements OnInit {
       });
     });
   }
+
 
   // dismiss loading icon
   async dismiss() {

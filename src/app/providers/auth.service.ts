@@ -8,6 +8,7 @@ interface User {
   email: string;
   displayName?: string;
   userLevel?: string;
+  image?: any;
 }
 
 @Injectable({
@@ -46,16 +47,17 @@ export class AuthService {
     });
   }
 
-  updateUserData(user) {
+  updateUserData(cred) {
     // Sets user data to firestore on login
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`Users/${this.getUserID()}`);
 
     const data: User = {
       uid: this.getUserID(),
-      email: user.email,
-      displayName: user.displayName,
-      userLevel: user.userLevel
+      email: cred.email,
+      displayName: cred.displayName,
+      userLevel: cred.userLevel,
+      image: cred.image
     };
 
     return userRef.set(data, { merge: true });
@@ -63,6 +65,7 @@ export class AuthService {
   }
 
   logout(): Promise<void> {
+    localStorage.removeItem('userLevel');
     return this.afAuth.auth.signOut();
   }
 
@@ -70,7 +73,10 @@ export class AuthService {
 
     if (firebase.auth().currentUser !== null) {
       return firebase.auth().currentUser.uid;
+    } else {
+      return '';
     }
+
   }
 
   getUserName() {
